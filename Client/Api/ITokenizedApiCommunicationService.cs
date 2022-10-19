@@ -19,6 +19,10 @@ namespace Forge.Security.Jwt.Shared.Client.Api
         /// <value>The default encoding.</value>
         Encoding DefaultEncoding { get; set; }
 
+        /// <summary>Gets or sets the user agent.</summary>
+        /// <value>The user agent.</value>
+        string UserAgent { get; set; }
+
         /// <summary>Gets or sets the access token.</summary>
         /// <value>The JWT bearer access token, which used for the Api calls. It will be added to the header.</value>
         string AccessToken { get; set; }

@@ -26,8 +26,8 @@ namespace Forge.Security.Jwt.Shared.Client.Services
             where TAuthResult : class, IAuthenticationResponse, new();
 
         /// <summary>Logs out the current user.</summary>
-        /// <returns>Task</returns>
-        Task LogoutUserAsync();
+        /// <returns>True, if the logout was successful, otherwise, False</returns>
+        Task<bool> LogoutUserAsync();
 
         /// <summary>Gets the current user information.</summary>
         /// <returns>A data object which responded back by the provider/server/service</returns>
@@ -35,7 +35,7 @@ namespace Forge.Security.Jwt.Shared.Client.Services
 
         /// <summary>Validates the current token.</summary>
         /// <returns>True, if the token is valid, otherwise, False.</returns>
-        Task<TokenValidationResponse> ValidateTokenAsync();
+        Task<bool> ValidateTokenAsync();
 
         /// <summary>Refreshes the current token and get a new one.</summary>
         /// <returns>The new token, or null, if it is not valid.</returns>

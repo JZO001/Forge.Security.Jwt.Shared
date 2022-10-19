@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Text.Json;
 
 namespace Forge.Security.Jwt.Shared.Storage
 {
@@ -10,10 +11,18 @@ namespace Forge.Security.Jwt.Shared.Storage
     /// <summary>Memory storage to persist tokens</summary>
     /// <typeparam name="TValue">Data type</typeparam>
     [Serializable]
-    public class MemoryStorage<TValue> : IStorage<TValue>
+    public class MemoryStorage<TValue> : IStorage<TValue> where TValue : class, new()
     {
 
-        private readonly ConcurrentDictionary<string, object> _dictionary = new ConcurrentDictionary<string, object>();
+        private readonly ConcurrentDictionary<string, string> _dictionary = new ConcurrentDictionary<string, string>();
+        private readonly JsonSerializerOptions serializeOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+        private readonly JsonSerializerOptions deserializeOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
 
         /// <summary>Initializes a new instance of the <see cref="MemoryStorage{TValue}" /> class.</summary>
         public MemoryStorage()
@@ -39,7 +48,7 @@ namespace Forge.Security.Jwt.Shared.Storage
         /// <returns>List of data</returns>
         public async Task<IEnumerable<TValue>> GetAsync()
         {
-            return await Task.FromResult(_dictionary.Values.Select(i => (TValue)i).ToList<TValue>());
+            return await Task.FromResult(_dictionary.Values.Select(json => Deserialize(json)).ToList<TValue>());
         }
 
         /// <summary>Gets the item by key</summary>
@@ -48,10 +57,10 @@ namespace Forge.Security.Jwt.Shared.Storage
         public async Task<TValue> GetAsync(string key)
         {
             TValue result = default(TValue);
-            object value = null;
-            if (_dictionary.TryGetValue(key, out value))
+            string json = string.Empty;
+            if (_dictionary.TryGetValue(key, out json))
             {
-                result = (TValue)value;
+                result = Deserialize(json);
             }
             return await Task.FromResult(result);
         }
@@ -69,7 +78,18 @@ namespace Forge.Security.Jwt.Shared.Storage
         /// <param name="data">The data.</param>
         public async Task SetAsync(string key, TValue data)
         {
-            await Task.Run(() => _dictionary.AddOrUpdate(key, data, (s, t) => data));
+            string json = Serialize(data);
+            await Task.Run(() => _dictionary.AddOrUpdate(key, json, (s, t) => json));
+        }
+
+        private string Serialize(TValue value)
+        {
+            return JsonSerializer.Serialize(value, serializeOptions);
+        }
+
+        private TValue Deserialize(string json)
+        {
+            return JsonSerializer.Deserialize<TValue>(json, deserializeOptions);
         }
 
     }

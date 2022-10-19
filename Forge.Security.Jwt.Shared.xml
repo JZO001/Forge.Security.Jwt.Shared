@@ -87,6 +87,10 @@
             <summary>Gets or sets the default encoding for sending.</summary>
             <value>The default encoding.</value>
         </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Api.ITokenizedApiCommunicationService.UserAgent">
+            <summary>Gets or sets the user agent.</summary>
+            <value>The user agent.</value>
+        </member>
         <member name="P:Forge.Security.Jwt.Shared.Client.Api.ITokenizedApiCommunicationService.AccessToken">
             <summary>Gets or sets the access token.</summary>
             <value>The JWT bearer access token, which used for the Api calls. It will be added to the header.</value>
@@ -119,6 +123,16 @@
             <param name="uri">The URI.</param>
             <returns>The return data</returns>
         </member>
+        <member name="T:Forge.Security.Jwt.Shared.Client.Models.AdditionalData">
+            <summary>Represents the default implementation for the optional additional data</summary>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Client.Models.AdditionalData.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Forge.Security.Jwt.Shared.Client.Models.AdditionalData" /> class.</summary>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.AdditionalData.SecondaryKeys">
+            <summary>Gets or sets the secondary keys. Optionally include other metadata, such as user agent, ip address, device name, and so on</summary>
+            <value>The secondary keys.</value>
+        </member>
         <member name="T:Forge.Security.Jwt.Shared.Client.Models.AuthenticationResponse">
             <summary>Login response data</summary>
         </member>
@@ -133,6 +147,48 @@
         <member name="P:Forge.Security.Jwt.Shared.Client.Models.AuthenticationResponse.RefreshTokenExpireAt">
             <summary>Gets or sets the expiration time</summary>
             <value>The expiration time.</value>
+        </member>
+        <member name="T:Forge.Security.Jwt.Shared.Client.Models.BooleanResponse">
+            <summary>Represents the result of the token validation</summary>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.BooleanResponse.Result">
+            <summary>Represents the validation result</summary>
+            <value>Returns True, if the token is valid, otherwise False</value>
+        </member>
+        <member name="T:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions">
+            <summary>Represents the settings of the client side authentication framework</summary>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.BaseAddress">
+            <summary>Gets or sets the base address of the HttpClient.</summary>
+            <value>The base address.</value>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.AuthenticationUri">
+            <summary>Gets or sets the authentication URI.</summary>
+            <value>The authentication URI.</value>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.LogoutUri">
+            <summary>Gets or sets the logout URI.</summary>
+            <value>The logout URI.</value>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.ValidateTokenUri">
+            <summary>Gets or sets the validation URI.</summary>
+            <value>The logout URI.</value>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.RefreshUri">
+            <summary>Gets or sets the refresh URI.</summary>
+            <value>The logout URI.</value>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.HttpMessageHandler">
+            <summary>Gets or sets the HTTP message handler for the HttpClient.</summary>
+            <value>The HTTP message handler.</value>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.SecondaryKeys">
+            <summary>Gets or sets the additional data.</summary>
+            <value>The additional data.</value>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.RefreshTokenBeforeExpirationInMilliseconds">
+            <summary>Gets or sets the value in milliseconds, when the service refresh the token before it expired</summary>
+            <value>The refresh token before expiration in milliseconds.</value>
         </member>
         <member name="T:Forge.Security.Jwt.Shared.Client.Models.ParsedTokenData">
             <summary>Represents the parsed token data with the authentication result</summary>
@@ -156,6 +212,10 @@
         <member name="P:Forge.Security.Jwt.Shared.Client.Models.ParsedTokenData.RefreshTokenExpireAt">
             <summary>Gets or sets the expire time of the refresh token</summary>
             <value>Expire time</value>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Client.Models.ParsedTokenData.Clone">
+            <summary>Creates a new object that is a copy of the current instance.</summary>
+            <returns>A new object that is a copy of this instance.</returns>
         </member>
         <member name="T:Forge.Security.Jwt.Shared.Client.Models.TokenRequest">
             <summary>Request object for refresh token operations</summary>
@@ -217,7 +277,7 @@
         </member>
         <member name="M:Forge.Security.Jwt.Shared.Client.Services.IAuthenticationService.LogoutUserAsync">
             <summary>Logs out the current user.</summary>
-            <returns>Task</returns>
+            <returns>True, if the logout was successful, otherwise, False</returns>
         </member>
         <member name="M:Forge.Security.Jwt.Shared.Client.Services.IAuthenticationService.GetCurrentUserInfoAsync">
             <summary>Gets the current user information.</summary>
@@ -231,14 +291,21 @@
             <summary>Refreshes the current token and get a new one.</summary>
             <returns>The new token, or null, if it is not valid.</returns>
         </member>
+        <member name="T:Forge.Security.Jwt.Shared.Client.Services.IHostedService">
+            <summary>Represents a hostable service</summary>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IHostedService.StartAsync(System.Threading.CancellationToken)">
+            <summary>Triggered when the application host is ready to start the service.</summary>
+            <param name="cancellationToken">Indicates that the start process has been aborted.</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IHostedService.StopAsync(System.Threading.CancellationToken)">
+            <summary>Triggered when the application host is performing a graceful shutdown.</summary>
+            <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+            <returns>Task</returns>
+        </member>
         <member name="T:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider">
             <summary>Interface for AuthenticationStateProvider</summary>
-        </member>
-        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.GetAuthenticationStateAsync">
-            <summary>
-            Asynchronously gets an <see cref="T:Microsoft.AspNetCore.Components.Authorization.AuthenticationState"/> that describes the current user.
-            </summary>
-            <returns>A task that, when resolved, gives an <see cref="T:Microsoft.AspNetCore.Components.Authorization.AuthenticationState"/> instance that describes the current user.</returns>
         </member>
         <member name="E:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.AuthenticationStateChanged">
             <summary>
@@ -246,24 +313,38 @@
             has changed. For example, this event may be raised if a user logs in or out.
             </summary>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.AuthenticateUser``1(``0)">
+        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.GetAuthenticationStateAsync">
+            <summary>
+            Asynchronously gets an <see cref="T:Microsoft.AspNetCore.Components.Authorization.AuthenticationState"/> that describes the current user.
+            </summary>
+            <returns>A task that, when resolved, gives an <see cref="T:Microsoft.AspNetCore.Components.Authorization.AuthenticationState"/> instance that describes the current user.</returns>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.AuthenticateUserAsync``1(``0)">
             <summary>Authenticates the user with the gives login response</summary>
             <typeparam name="TAuthenticationResponse">The type of the login response.</typeparam>
             <param name="authenticationResponse">The login response.</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.AuthenticateUser(Forge.Security.Jwt.Shared.Client.Models.ParsedTokenData)">
+        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.AuthenticateUserAsync(Forge.Security.Jwt.Shared.Client.Models.ParsedTokenData)">
             <summary>Authenticates the user with the given token.</summary>
             <param name="parsedTokenData">The parsed token data.</param>
             <returns>Task</returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.LogoutUser">
+        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.LogoutUserAsync">
             <summary>Marks the user as logged out</summary>
             <returns>Task</returns>
         </member>
         <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.GetParsedTokenDataAsync">
             <summary>Gets the parsed/extracted data asynchronously from the security token.</summary>
             <returns>ParsedTokenData</returns>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Client.Services.IJwtTokenAuthenticationStateProvider.ParseTokenAsync(Forge.Security.Jwt.Shared.Client.Services.IAuthenticationResponse)">
+            <summary>Parses the response data and gives back ParsedTokenData object.</summary>
+            <param name="loginResponse">The login response.</param>
+            <returns>ParsedTokenData</returns>
+        </member>
+        <member name="T:Forge.Security.Jwt.Shared.Client.Services.IRefreshTokenService">
+            <summary>Represents the token refresh service</summary>
         </member>
         <member name="T:Forge.Security.Jwt.Shared.Client.Services.UserDataEventArgs">
             <summary>Represents the user data in an event arguments</summary>
@@ -284,6 +365,61 @@
             <summary>Parses JWT access token to get the claims.</summary>
             <param name="jwtAccessToken">The JWT access token.</param>
             <returns>List of extracted Claim(s)</returns>
+        </member>
+        <member name="T:Forge.Security.Jwt.Shared.Serialization.ISerializationProvider">
+            <summary>Defines a generic serialization provider</summary>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Serialization.ISerializationProvider.Serialize``1(``0)">
+            <summary>Serializes the specified object.</summary>
+            <typeparam name="TData"></typeparam>
+            <param name="obj">The object.</param>
+            <returns>
+              The serialized content in string format
+            </returns>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Serialization.ISerializationProvider.Deserialize``1(System.String)">
+            <summary>Deserializes the specified text.</summary>
+            <typeparam name="TResult">Type of the output data</typeparam>
+            <param name="text">The text.</param>
+            <returns>The deserialized data</returns>
+        </member>
+        <member name="T:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializer">
+            <summary>Defines a generic serialization provider</summary>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializer.#ctor(Microsoft.Extensions.Options.IOptions{Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializerOptions})">
+            <summary>Initializes a new instance of the <see cref="T:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializer" /> class.</summary>
+            <param name="options">The options.</param>
+            <exception cref="T:System.ArgumentNullException">options</exception>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializer.#ctor(Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializerOptions)">
+            <summary>Initializes a new instance of the <see cref="T:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializer" /> class.</summary>
+            <param name="options">The options.</param>
+            <exception cref="T:System.ArgumentNullException">options</exception>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializer.Deserialize``1(System.String)">
+            <summary>Deserializes the specified text.</summary>
+            <typeparam name="TResult">Type of the output data</typeparam>
+            <param name="text">The text.</param>
+            <returns>The deserialized data</returns>
+        </member>
+        <member name="M:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializer.Serialize``1(``0)">
+            <summary>Serializes the specified object.</summary>
+            <typeparam name="T"></typeparam>
+            <param name="data">The object.</param>
+            <returns>
+              The serialized content in string format
+            </returns>
+        </member>
+        <member name="T:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializerOptions">
+            <summary>Default options for System.Text.Json serialization/deserialization</summary>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializerOptions.SerializeOptions">
+            <summary>The serialize options.</summary>
+            <value>The serialize options.</value>
+        </member>
+        <member name="P:Forge.Security.Jwt.Shared.Serialization.SystemTextJsonSerializerOptions.DeserializeOptions">
+            <summary>The deserialize options.</summary>
+            <value>The deserialize options.</value>
         </member>
         <member name="T:Forge.Security.Jwt.Shared.Service.IJwtManagementService">
             <summary>Jwt Management Service declaration</summary>
@@ -390,6 +526,30 @@
             <summary>Gets or sets the expiration time</summary>
             <value>The expiration time.</value>
         </member>
+        <member name="T:Forge.Security.Jwt.Shared.Service.Models.JwtTokenValidationResultEnum">
+            <summary>Represents the refresh token validation result</summary>
+        </member>
+        <member name="F:Forge.Security.Jwt.Shared.Service.Models.JwtTokenValidationResultEnum.Valid">
+            <summary>Valid</summary>
+        </member>
+        <member name="F:Forge.Security.Jwt.Shared.Service.Models.JwtTokenValidationResultEnum.JwtTokenDecodingError">
+            <summary>Jwt access token decoding error</summary>
+        </member>
+        <member name="F:Forge.Security.Jwt.Shared.Service.Models.JwtTokenValidationResultEnum.SignatureAlgorithmMismatch">
+            <summary>The signature algorithm mismatch</summary>
+        </member>
+        <member name="F:Forge.Security.Jwt.Shared.Service.Models.JwtTokenValidationResultEnum.RefreshTokenNotFound">
+            <summary>The refresh token not found</summary>
+        </member>
+        <member name="F:Forge.Security.Jwt.Shared.Service.Models.JwtTokenValidationResultEnum.UsernameMismatch">
+            <summary>The username mismatch</summary>
+        </member>
+        <member name="F:Forge.Security.Jwt.Shared.Service.Models.JwtTokenValidationResultEnum.RefreshTokenExpired">
+            <summary>The refresh token expired</summary>
+        </member>
+        <member name="F:Forge.Security.Jwt.Shared.Service.Models.JwtTokenValidationResultEnum.SecondaryKeysMismatch">
+            <summary>The secondary keys mismatch</summary>
+        </member>
         <member name="T:Forge.Security.Jwt.Shared.Storage.IStorage`1">
             <summary>Describes a storage with minimal required methods</summary>
             <typeparam name="TValue">Data type</typeparam>
@@ -408,7 +568,7 @@
             <summary>Gets the item by key</summary>
             <param name="key">The key.</param>
             <returns>
-              Data or default
+              Data or default. The data must be always a new instance based the original object.
             </returns>
         </member>
         <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.SetAsync(System.String,`0)">

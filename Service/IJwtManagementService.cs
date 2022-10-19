@@ -26,7 +26,7 @@ namespace Forge.Security.Jwt.Shared.Service
         /// <param name="now">The time when the refresh token will be active</param>
         /// <param name="secondaryKeys">The secondary keys.</param>
         /// <returns>True, if the tokens are valid, otherwise False.</returns>
-        bool Validate(string refreshToken, string accessToken, DateTime now, IEnumerable<JwtKeyValuePair> secondaryKeys);
+        JwtTokenValidationResultEnum Validate(string refreshToken, string accessToken, DateTime now, IEnumerable<JwtKeyValuePair> secondaryKeys);
 
         /// <summary>Generates new access and refresh tokens</summary>
         /// <param name="refreshToken">The refresh token.</param>

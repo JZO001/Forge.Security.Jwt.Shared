@@ -6,7 +6,7 @@ namespace Forge.Security.Jwt.Shared.Storage
 
     /// <summary>Describes a storage with minimal required methods</summary>
     /// <typeparam name="TValue">Data type</typeparam>
-    public interface IStorage<TValue>
+    public interface IStorage<TValue> where TValue : class, new()
     {
 
         /// <summary>Determines whether the specified key exist or not.</summary>
@@ -22,7 +22,7 @@ namespace Forge.Security.Jwt.Shared.Storage
         /// <summary>Gets the item by key</summary>
         /// <param name="key">The key.</param>
         /// <returns>
-        ///   Data or default
+        ///   Data or default. The data must be always a new instance based the original object.
         /// </returns>
         Task<TValue> GetAsync(string key);
 
