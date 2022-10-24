@@ -178,7 +178,7 @@
             <summary>Gets or sets the refresh URI.</summary>
             <value>The logout URI.</value>
         </member>
-        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.HttpMessageHandler">
+        <member name="P:Forge.Security.Jwt.Shared.Client.Models.JwtClientAuthenticationCoreOptions.HttpMessageHandlerFactory">
             <summary>Gets or sets the HTTP message handler for the HttpClient.</summary>
             <value>The HTTP message handler.</value>
         </member>

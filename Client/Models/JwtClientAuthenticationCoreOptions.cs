@@ -49,12 +49,12 @@ namespace Forge.Security.Jwt.Shared.Client.Models
 
         /// <summary>Gets or sets the HTTP message handler for the HttpClient.</summary>
         /// <value>The HTTP message handler.</value>
-        public HttpMessageHandler
+        public Func<HttpMessageHandler>
 #if NETSTANDARD2_0
 #else
             
 #endif
-            HttpMessageHandler
+            HttpMessageHandlerFactory
         { get; set; }
 
         /// <summary>Gets or sets the additional data.</summary>
