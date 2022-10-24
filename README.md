@@ -19,7 +19,11 @@ dotnet add package Forge.Security.Jwt.Shared
 If you're using Visual Studio you can also install via the built in NuGet package manager.
 
 
-Please check the following projects in my repositories:
+Please also check the following projects in my repositories:
+- Forge.Yoda
 - Forge.Security.Jwt.Service
+- Forge.Security.Jwt.Service.Storage.SqlServer
 - Forge.Security.Jwt.Client
 - Forge.Security.Jwt.Client.Storage.Browser
+- Forge.Wasm.BrowserStorages
+- Forge.Wasm.BrowserStorages.NewtonSoft.Json
