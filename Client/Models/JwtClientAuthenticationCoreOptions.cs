@@ -1,21 +1,4 @@
-﻿
-/* Unmerged change from project 'Forge.Security.Jwt.Shared (net6.0)'
-Before:
-using Forge.Security.Jwt.Shared.Client.Models;
-After:
-using Forge;
-using Forge.Security.Jwt.Shared.Client.Models;
-*/
-
-/* Unmerged change from project 'Forge.Security.Jwt.Shared (net5.0)'
-Before:
-using Forge.Security.Jwt.Shared.Client.Models;
-After:
-using Forge;
-using Forge.Security.Jwt.Shared.Client.Models;
-*/
-using Forge.Security.Jwt.Shared.Client.Services;
-using Forge.Security.Jwt.Shared.Service.Models;
+﻿using Forge.Security.Jwt.Shared.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
