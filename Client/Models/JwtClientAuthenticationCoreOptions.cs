@@ -32,13 +32,7 @@ namespace Forge.Security.Jwt.Shared.Client.Models
 
         /// <summary>Gets or sets the HTTP message handler for the HttpClient.</summary>
         /// <value>The HTTP message handler.</value>
-        public Func<HttpMessageHandler>
-#if NETSTANDARD2_0
-#else
-            
-#endif
-            HttpMessageHandlerFactory
-        { get; set; }
+        public Func<HttpMessageHandler> HttpMessageHandlerFactory { get; set; }
 
         /// <summary>Gets or sets the additional data.</summary>
         /// <value>The additional data.</value>
