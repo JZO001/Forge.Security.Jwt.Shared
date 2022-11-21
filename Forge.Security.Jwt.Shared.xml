@@ -29,6 +29,14 @@
             <summary>Gets the content of the response.</summary>
             <value>The content of the response.</value>
         </member>
+        <member name="P:Forge.Security.Jwt.Shared.Client.Api.HttpRequestException.StatusCode">
+            <summary>
+            Gets the HTTP status code to be returned with the exception.
+            </summary>
+            <value>
+            An HTTP status code if the exception represents a non-successful result, otherwise <c>null</c>.
+            </value>
+        </member>
         <member name="T:Forge.Security.Jwt.Shared.Client.Api.HttpRequestMessageEventArgs">
             <summary>Contains the HttpRequestMessage</summary>
         </member>
