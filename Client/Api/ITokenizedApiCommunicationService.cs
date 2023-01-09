@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Forge.Security.Jwt.Shared.Client.Api
@@ -30,9 +31,10 @@ namespace Forge.Security.Jwt.Shared.Client.Api
         /// <summary>Gets data</summary>
         /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="uri">The URI.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The result object</returns>
-        Task<TResult> GetAsync<TResult>(string uri)
-#if NETSTANDARD
+        Task<TResult> GetAsync<TResult>(string uri, CancellationToken cancellationToken)
+#if NETSTANDARD || NETCOREAPP3_1
             where TResult : class
 #endif
             ;
@@ -42,9 +44,10 @@ namespace Forge.Security.Jwt.Shared.Client.Api
         /// <typeparam name="TResult">The type of the result data.</typeparam>
         /// <param name="uri">The URI.</param>
         /// <param name="data">The data.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The result data</returns>
-        Task<TResult> PostAsync<TData, TResult>(string uri, TData data)
-#if NETSTANDARD
+        Task<TResult> PostAsync<TData, TResult>(string uri, TData data, CancellationToken cancellationToken)
+#if NETSTANDARD || NETCOREAPP3_1
             where TData : class
             where TResult : class
 #endif
@@ -55,9 +58,10 @@ namespace Forge.Security.Jwt.Shared.Client.Api
         /// <typeparam name="TResult">The type of the result data.</typeparam>
         /// <param name="uri">The URI.</param>
         /// <param name="data">The data.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The result data</returns>
-        Task<TResult> PutAsync<TData, TResult>(string uri, TData data)
-#if NETSTANDARD
+        Task<TResult> PutAsync<TData, TResult>(string uri, TData data, CancellationToken cancellationToken)
+#if NETSTANDARD || NETCOREAPP3_1
             where TData : class
             where TResult : class
 #endif
@@ -66,9 +70,10 @@ namespace Forge.Security.Jwt.Shared.Client.Api
         /// <summary>Deletes a</summary>
         /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="uri">The URI.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The return data</returns>
-        Task<TResult> DeleteAsync<TResult>(string uri)
-#if NETSTANDARD
+        Task<TResult> DeleteAsync<TResult>(string uri, CancellationToken cancellationToken)
+#if NETSTANDARD || NETCOREAPP3_1
             where TResult : class
 #endif
             ;

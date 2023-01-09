@@ -29,7 +29,7 @@ namespace Forge.Security.Jwt.Shared.Client.Api
         /// <param name="responseContent">Content of the response in string.</param>
         /// <param name="message">The optional exception message.</param>
         /// <param name="innerException">The optional inner exception.</param>
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETCOREAPP3_1
         public HttpRequestException(HttpStatusCode code, string responseContent, string message, Exception innerException) : base(message, innerException)
         {
             StatusCode = code;
@@ -46,7 +46,7 @@ namespace Forge.Security.Jwt.Shared.Client.Api
         /// <value>The content of the response.</value>
         public string ResponseContent { get; private set; }
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETCOREAPP3_1
         /// <summary>
         /// Gets the HTTP status code to be returned with the exception.
         /// </summary>
