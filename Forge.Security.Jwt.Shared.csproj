@@ -1,36 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup Label="Globals">
-	  <SccProjectName>SAK</SccProjectName>
-	  <SccProvider>SAK</SccProvider>
-	  <SccAuxPath>SAK</SccAuxPath>
-	  <SccLocalPath>SAK</SccLocalPath>
+		<SccProjectName>SAK</SccProjectName>
+		<SccProvider>SAK</SccProvider>
+		<SccAuxPath>SAK</SccAuxPath>
+		<SccLocalPath>SAK</SccLocalPath>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0</TargetFrameworks>
-		<Version>1.0.2.1</Version>
-		<Copyright>Copyright © Zoltan Juhasz, 2022</Copyright>
-		<Description>Forge Security Jwt models</Description>
-		<Product>Forge: reference, practice and patterns implementations and helper(s)</Product>
-		<Company>Forge Project Contributor(s)</Company>
-		<PackageId>Forge.Security.Jwt.Shared</PackageId>
-		<Authors>Zoltan Juhasz</Authors>
-		<AssemblyVersion>1.0.2.2</AssemblyVersion>
-		<Title>Forge Security Jwt Shared</Title>
+		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\.Documents\Forge.pfx</AssemblyOriginatorKeyFile>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<ProjectGuid>{A0658202-6E8C-4BB7-B5F1-52E7F3B6EDDA}</ProjectGuid>
+		<DocumentationFile>Forge.Security.Jwt.Shared.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<DocumentationFile>Forge.Security.Jwt.Shared.xml</DocumentationFile>
+		<Product>Forge: reference, practice and patterns implementations and helper(s)</Product>
+		<Company>Forge Project Contributor(s)</Company>
+		<Copyright>Copyright © Zoltan Juhasz, 2022-2023</Copyright>
+		<PackageId>Forge.Security.Jwt.Shared</PackageId>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Title>Forge Security Jwt Shared</Title>
+		<Description>Forge Security Jwt models</Description>
+		<PackageProjectUrl>https://github.com/JZO001/Forge.Security.Jwt.Shared</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/JZO001/Forge.Security.Jwt.Shared</RepositoryUrl>
+		<Authors>Zoltan Juhasz</Authors>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryType>git</RepositoryType>
+		<AssemblyVersion>1.6.3.0</AssemblyVersion>
+		<Version>$(AssemblyVersion)</Version>
+		<FileVersion>$(AssemblyVersion)</FileVersion>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageTags>jwt, security, authentication, authorization, sso, blazor</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.1" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.1" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
@@ -45,8 +51,23 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.12" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0'">
 		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

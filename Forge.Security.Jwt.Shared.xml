@@ -29,14 +29,6 @@
             <summary>Gets the content of the response.</summary>
             <value>The content of the response.</value>
         </member>
-        <member name="P:Forge.Security.Jwt.Shared.Client.Api.HttpRequestException.StatusCode">
-            <summary>
-            Gets the HTTP status code to be returned with the exception.
-            </summary>
-            <value>
-            An HTTP status code if the exception represents a non-successful result, otherwise <c>null</c>.
-            </value>
-        </member>
         <member name="T:Forge.Security.Jwt.Shared.Client.Api.HttpRequestMessageEventArgs">
             <summary>Contains the HttpRequestMessage</summary>
         </member>
@@ -407,7 +399,7 @@
         <member name="M:Forge.Security.Jwt.Shared.Serialization.ISerializationProvider.Serialize``1(``0)">
             <summary>Serializes the specified object.</summary>
             <typeparam name="TData"></typeparam>
-            <param name="obj">The object.</param>
+            <param name="data">The object.</param>
             <returns>
               The serialized content in string format
             </returns>
@@ -589,72 +581,84 @@
             <summary>Describes a storage with minimal required methods</summary>
             <typeparam name="TValue">Data type</typeparam>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.ContainsKeyAsync(System.String)">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.ContainsKeyAsync(System.String,System.Threading.CancellationToken)">
             <summary>Determines whether the specified key exist or not.</summary>
             <param name="key">The key.</param>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>
               <c>true</c> if the specified key exists; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.GetAsync">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.GetAsync(System.Threading.CancellationToken)">
             <summary>Gets stored data</summary>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>List of data</returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.GetAsync(System.String)">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.GetAsync(System.String,System.Threading.CancellationToken)">
             <summary>Gets the item by key</summary>
             <param name="key">The key.</param>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>
               Data or default. The data must be always a new instance based the original object.
             </returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.SetAsync(System.String,`0)">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.SetAsync(System.String,`0,System.Threading.CancellationToken)">
             <summary>Sets an item</summary>
             <param name="key">The key.</param>
             <param name="data">The data.</param>
+            <param name="cancellationToken">The cancellation token.</param>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.RemoveAsync(System.String)">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.RemoveAsync(System.String,System.Threading.CancellationToken)">
             <summary>Removes an item from the storage</summary>
             <param name="key">The key.</param>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>
               True, if it was successful, otherwise, False.
             </returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.ClearAsync">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.IStorage`1.ClearAsync(System.Threading.CancellationToken)">
             <summary>Clears items from the storage</summary>
+            <param name="cancellationToken">The cancellation token.</param>
         </member>
         <member name="T:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1">
             <summary>Memory storage to persist tokens</summary>
             <typeparam name="TValue">Data type</typeparam>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.#ctor">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.#ctor(Forge.Security.Jwt.Shared.Serialization.ISerializationProvider)">
             <summary>Initializes a new instance of the <see cref="T:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1" /> class.</summary>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.ClearAsync">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.ClearAsync(System.Threading.CancellationToken)">
             <summary>Clears items from the storage</summary>
+            <param name="cancellationToken">The cancellation token.</param>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.ContainsKeyAsync(System.String)">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.ContainsKeyAsync(System.String,System.Threading.CancellationToken)">
             <summary>Determines whether the specified key exist or not.</summary>
             <param name="key">The key.</param>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>
               <c>true</c> if the specified key exists; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.GetAsync">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.GetAsync(System.Threading.CancellationToken)">
             <summary>Gets stored data</summary>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>List of data</returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.GetAsync(System.String)">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.GetAsync(System.String,System.Threading.CancellationToken)">
             <summary>Gets the item by key</summary>
             <param name="key">The key.</param>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>Data or default</returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.RemoveAsync(System.String)">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.RemoveAsync(System.String,System.Threading.CancellationToken)">
             <summary>Removes an item from the storage</summary>
             <param name="key">The key.</param>
+            <param name="cancellationToken">The cancellation token.</param>
             <returns>True, if it was successful, otherwise, False.</returns>
         </member>
-        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.SetAsync(System.String,`0)">
+        <member name="M:Forge.Security.Jwt.Shared.Storage.MemoryStorage`1.SetAsync(System.String,`0,System.Threading.CancellationToken)">
             <summary>Add or update an item</summary>
             <param name="key">The key.</param>
             <param name="data">The data.</param>
+            <param name="cancellationToken">The cancellation token.</param>
         </member>
     </members>
 </doc>

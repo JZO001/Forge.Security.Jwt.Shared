@@ -7,11 +7,11 @@
 
         /// <summary>Serializes the specified object.</summary>
         /// <typeparam name="TData"></typeparam>
-        /// <param name="obj">The object.</param>
+        /// <param name="data">The object.</param>
         /// <returns>
         ///   The serialized content in string format
         /// </returns>
-        string Serialize<TData>(TData obj);
+        string Serialize<TData>(TData data);
 
         /// <summary>Deserializes the specified text.</summary>
         /// <typeparam name="TResult">Type of the output data</typeparam>
