@@ -87,14 +87,6 @@
             <summary>Gets or sets the default encoding for sending.</summary>
             <value>The default encoding.</value>
         </member>
-        <member name="P:Forge.Security.Jwt.Shared.Client.Api.ITokenizedApiCommunicationService.UserAgent">
-            <summary>Gets or sets the user agent.</summary>
-            <value>The user agent.</value>
-        </member>
-        <member name="P:Forge.Security.Jwt.Shared.Client.Api.ITokenizedApiCommunicationService.AccessToken">
-            <summary>Gets or sets the access token.</summary>
-            <value>The JWT bearer access token, which used for the Api calls. It will be added to the header.</value>
-        </member>
         <member name="M:Forge.Security.Jwt.Shared.Client.Api.ITokenizedApiCommunicationService.GetAsync``1(System.String,System.Threading.CancellationToken)">
             <summary>Gets data</summary>
             <typeparam name="TResult">The type of the result.</typeparam>
@@ -267,10 +259,6 @@
         </member>
         <member name="E:Forge.Security.Jwt.Shared.Client.Services.IAuthenticationService.OnUserAuthenticationStateChanged">
             <summary>Occurs when a user authentication state changed</summary>
-        </member>
-        <member name="P:Forge.Security.Jwt.Shared.Client.Services.IAuthenticationService.AdditionalData">
-            <summary>Gets additional data, if something need to send at logout/refresh/validate</summary>
-            <value>The logout data.</value>
         </member>
         <member name="M:Forge.Security.Jwt.Shared.Client.Services.IAuthenticationService.AuthenticateUserAsync``2(``0)">
             <summary>Authenticates the user with the given credentials</summary>

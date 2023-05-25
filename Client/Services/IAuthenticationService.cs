@@ -13,10 +13,6 @@ namespace Forge.Security.Jwt.Shared.Client.Services
         /// <summary>Occurs when a user authentication state changed</summary>
         event EventHandler<UserDataEventArgs> OnUserAuthenticationStateChanged;
 
-        /// <summary>Gets additional data, if something need to send at logout/refresh/validate</summary>
-        /// <value>The logout data.</value>
-        IAdditionalData AdditionalData { get; }
-
         /// <summary>Authenticates the user with the given credentials</summary>
         /// <typeparam name="TAuthCredentials">The type of the authentication credentials.</typeparam>
         /// <typeparam name="TAuthResult">The type of the authentication result.</typeparam>
