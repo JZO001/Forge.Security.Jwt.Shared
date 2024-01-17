@@ -153,3 +153,5 @@ $RECYCLE.BIN/
 .DS_Store
 
 # For Future
+Forge.Security.Jwt.Shared.xml
+
