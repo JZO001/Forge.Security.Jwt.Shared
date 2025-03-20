@@ -27,11 +27,12 @@
 		<Authors>Zoltan Juhasz</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryType>git</RepositoryType>
-		<AssemblyVersion>1.7.3.0</AssemblyVersion>
+		<AssemblyVersion>1.7.4.0</AssemblyVersion>
 		<Version>$(AssemblyVersion)</Version>
 		<FileVersion>$(AssemblyVersion)</FileVersion>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageTags>jwt, security, authentication, authorization, sso, blazor</PackageTags>
+		<IsTrimmable>false</IsTrimmable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
