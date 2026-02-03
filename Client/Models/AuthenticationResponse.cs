@@ -15,7 +15,7 @@ namespace Forge.Security.Jwt.Shared.Client.Models
 
         /// <summary>Gets or sets the refresh token.</summary>
         /// <value>The refresh token.</value>
-        public string RefreshToken { get; set; } = String.Empty;
+        public string RefreshToken { get; set; } = string.Empty;
 
         /// <summary>Gets or sets the expiration time</summary>
         /// <value>The expiration time.</value>

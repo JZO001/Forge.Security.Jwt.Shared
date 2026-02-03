@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Forge.Security.Jwt.Shared.Service.Models;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Forge.Security.Jwt.Shared.Service.Models;
+using System.Threading.Tasks;
 
 namespace Forge.Security.Jwt.Shared.Service
 {
@@ -39,13 +40,13 @@ namespace Forge.Security.Jwt.Shared.Service
         /// <summary>Removes the expired refresh tokens.</summary>
         /// <param name="now">The time before the tokens are expired</param>
         /// <returns>True, if at least one token removed, otherwise False.</returns>
-        bool RemoveExpiredRefreshTokens(DateTime now);
+        ValueTask<bool> RemoveExpiredRefreshTokensAsync(DateTime now);
 
         /// <summary>Removes the refresh token by user name and keys.</summary>
         /// <param name="userName">Name of the user.</param>
         /// <param name="secondaryKey">The secondary key.</param>
         /// <returns>True, if at least one token removed, otherwise False.</returns>
-        bool RemoveRefreshTokenByUserNameAndKeys(string userName, IEnumerable<JwtKeyValuePair> secondaryKey);
+        ValueTask<bool> RemoveRefreshTokenByUserNameAndKeysAsync(string userName, IEnumerable<JwtKeyValuePair> secondaryKey);
 
         /// <summary>Decodes the JWT token and get back the stored information</summary>
         /// <param name="token">The token.</param>

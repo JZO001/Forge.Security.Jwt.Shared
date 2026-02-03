@@ -16,7 +16,8 @@ namespace Forge.Security.Jwt.Shared.Serialization
         /// <exception cref="System.ArgumentNullException">options</exception>
         public SystemTextJsonSerializer(IOptions<SystemTextJsonSerializerOptions> options)
         {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
+            if (options.Value == null) throw new ArgumentNullException(nameof(options), "Options.Value cannot be null");
             _options = options.Value;
         }
 
@@ -25,7 +26,7 @@ namespace Forge.Security.Jwt.Shared.Serialization
         /// <exception cref="System.ArgumentNullException">options</exception>
         public SystemTextJsonSerializer(SystemTextJsonSerializerOptions options)
         {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             _options = options;
         }
 

@@ -28,9 +28,10 @@ namespace Forge.Security.Jwt.Shared.Storage
 
         /// <summary>Clears items from the storage</summary>
         /// <param name="cancellationToken">The cancellation token.</param>
-        public async Task ClearAsync(CancellationToken cancellationToken = default)
+        public Task ClearAsync(CancellationToken cancellationToken = default)
         {
-            await Task.Run(() => _dictionary.Clear());
+            _dictionary.Clear();
+            return Task.CompletedTask;
         }
 
         /// <summary>Determines whether the specified key exist or not.</summary>
@@ -38,51 +39,54 @@ namespace Forge.Security.Jwt.Shared.Storage
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>
         ///   <c>true</c> if the specified key exists; otherwise, <c>false</c>.</returns>
-        public async Task<bool> ContainsKeyAsync(string key, CancellationToken cancellationToken = default)
+        public Task<bool> ContainsKeyAsync(string key, CancellationToken cancellationToken = default)
         {
-            return await Task.FromResult(_dictionary.ContainsKey(key));
+            return Task.FromResult(_dictionary.ContainsKey(key));
         }
 
         /// <summary>Gets stored data</summary>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>List of data</returns>
-        public async Task<IEnumerable<TValue>> GetAsync(CancellationToken cancellationToken = default)
+        public Task<IEnumerable<TValue>> GetAsync(CancellationToken cancellationToken = default)
         {
-            return await Task.FromResult(_dictionary.Values.Select(json => Deserialize(json)).ToList<TValue>());
+            return Task.FromResult(_dictionary.Values.Select(json => Deserialize(json)));
         }
 
         /// <summary>Gets the item by key</summary>
         /// <param name="key">The key.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>Data or default</returns>
-        public async Task<TValue> GetAsync(string key, CancellationToken cancellationToken = default)
+        public Task<TValue> GetAsync(string key, CancellationToken cancellationToken = default)
         {
-            TValue result = default(TValue);
+            TValue result = default;
             string json = string.Empty;
+
             if (_dictionary.TryGetValue(key, out json))
             {
                 result = Deserialize(json);
             }
-            return await Task.FromResult(result);
+
+            return Task.FromResult(result);
         }
 
         /// <summary>Removes an item from the storage</summary>
         /// <param name="key">The key.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>True, if it was successful, otherwise, False.</returns>
-        public async Task<bool> RemoveAsync(string key, CancellationToken cancellationToken = default)
+        public Task<bool> RemoveAsync(string key, CancellationToken cancellationToken = default)
         {
-            return await Task.FromResult(_dictionary.TryRemove(key, out _));
+            return Task.FromResult(_dictionary.TryRemove(key, out _));
         }
 
         /// <summary>Add or update an item</summary>
         /// <param name="key">The key.</param>
         /// <param name="data">The data.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
-        public async Task SetAsync(string key, TValue data, CancellationToken cancellationToken = default)
+        public Task SetAsync(string key, TValue data, CancellationToken cancellationToken = default)
         {
             string json = Serialize(data);
-            await Task.Run(() => _dictionary.AddOrUpdate(key, json, (s, t) => json));
+            _dictionary.AddOrUpdate(key, json, (s, t) => json);
+            return Task.CompletedTask;
         }
 
         private string Serialize(TValue value)
