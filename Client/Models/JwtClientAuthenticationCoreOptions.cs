@@ -1,7 +1,5 @@
 ﻿using Forge.Security.Jwt.Shared.Service.Models;
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
 
 namespace Forge.Security.Jwt.Shared.Client.Models
 {
@@ -29,10 +27,6 @@ namespace Forge.Security.Jwt.Shared.Client.Models
         /// <summary>Gets or sets the refresh URI.</summary>
         /// <value>The logout URI.</value>
         public string RefreshUri { get; set; } = "api/auth/refresh-token";
-
-        /// <summary>Gets or sets the HTTP message handler for the HttpClient.</summary>
-        /// <value>The HTTP message handler.</value>
-        public Func<HttpMessageHandler> HttpMessageHandlerFactory { get; set; }
 
         /// <summary>Gets or sets the additional data.</summary>
         /// <value>The additional data.</value>
