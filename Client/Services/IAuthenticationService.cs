@@ -33,13 +33,9 @@ namespace Forge.Security.Jwt.Shared.Client.Services
             where TAuthResult : class, IAuthenticationResponse, new();
 
         /// <summary>Logs out the current user.</summary>
-        /// <returns>True, if the logout was successful, otherwise, False</returns>
-        Task<bool> LogoutUserAsync();
-
-        /// <summary>Logs out the current user.</summary>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>True, if the logout was successful, otherwise, False</returns>
-        Task<bool> LogoutUserAsync(CancellationToken cancellationToken);
+        Task<bool> LogoutUserAsync(CancellationToken cancellationToken = default);
 
         /// <summary>Gets the current user information.</summary>
         /// <returns>A data object which responded back by the provider/server/service</returns>
