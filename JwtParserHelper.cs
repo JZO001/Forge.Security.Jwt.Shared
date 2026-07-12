@@ -80,6 +80,7 @@ namespace Forge.Security.Jwt.Shared
 
         private static byte[] ParseBase64WithoutPadding(string base64)
         {
+            base64 = base64.Replace('-', '+').Replace('_', '/');
             switch (base64.Length % 4)
             {
                 case 2: base64 += "=="; break;
