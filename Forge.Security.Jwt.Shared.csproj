@@ -8,11 +8,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0;net11.0</TargetFrameworks>
 		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\.Documents\Forge.pfx</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>..\.Documents\Forge.snk</AssemblyOriginatorKeyFile>
 		<ProjectGuid>{A0658202-6E8C-4BB7-B5F1-52E7F3B6EDDA}</ProjectGuid>
-		<DocumentationFile>Forge.Security.Jwt.Shared.xml</DocumentationFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -26,11 +26,12 @@
 		<RepositoryUrl>https://github.com/JZO001/Forge.Security.Jwt.Shared</RepositoryUrl>
 		<Authors>Zoltan Juhasz</Authors>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>logo.png</PackageIcon>
 		<RepositoryType>git</RepositoryType>
-		<AssemblyVersion>1.8.5</AssemblyVersion>
+		<AssemblyVersion>1.9.0.0</AssemblyVersion>
 		<Version>$(AssemblyVersion)</Version>
 		<FileVersion>$(AssemblyVersion)</FileVersion>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>jwt, security, authentication, authorization, sso, blazor</PackageTags>
 		<IsTrimmable>false</IsTrimmable>
 		<PackageOutputPath>../.Documents/</PackageOutputPath>
@@ -42,7 +43,6 @@
 
 	<ItemGroup>
 		<None Remove="Forge.Security.Jwt.Shared.csproj.vspscc" />
-		<None Remove="Forge.Security.Jwt.Shared.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -53,14 +53,6 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="3.1.32" />
 		<PackageReference Include="Microsoft.AspNetCore.Authorization" Version="6.0.0" />
 		<PackageReference Include="System.Text.Json" Version="8.0.5" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.25" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.14" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
@@ -75,7 +67,11 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="10.0.0" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0' or '$(TargetFramework)' == 'net9.0' or '$(TargetFramework)' == 'net10.0'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net11.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="11.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0' or '$(TargetFramework)' == 'net9.0' or '$(TargetFramework)' == 'net10.0'  or '$(TargetFramework)' == 'net11.0'">
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
 
@@ -88,10 +84,14 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+		<None Include="logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	<!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="echo F|xcopy /r /y &quot;$(TargetDir)$(TargetName).dll&quot; &quot;$(SolutionDir).Output\$(TargetFramework)\$(TargetName).dll&quot;&#xD;&#xA;echo F|xcopy /r /y &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(SolutionDir).Output\$(TargetFramework)\$(TargetName).pdb&quot;&#xD;&#xA;echo F|xcopy /r /y &quot;$(TargetDir)$(TargetName).xml&quot; &quot;$(SolutionDir).Output\$(TargetFramework)\$(TargetName).xml&quot;&#xD;&#xA;" />
-	</Target>
+	</Target>-->
 
 </Project>
